@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "About Us",
+        "year": 2001,
+        "type": "Comedy"
+    },
+    {
+      "id": 2,
+      "title": "About Uyou",
+      "year": 2006,
+      "type": "Horror",
+    },
+    {
+      "id": 3,
+      "title": "The Martian",
+      "year": 2016,
+      "type": "Sci-Fi",
+    },
+    {
+      "id": 4,
+      "title": "King Author",
+      "year": 2006,
+      "type": "Fantasy",
+    }
+]
