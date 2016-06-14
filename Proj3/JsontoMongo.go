@@ -4,48 +4,54 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+
 	"log"
 	"os"
 
 	"gopkg.in/mgo.v2"
 )
 
-type Movie struct { //exported Student
+type movie struct { //exported Student
 	ID    float64 `json:"id"`
 	Title string  `json:"title"`
 	Year  float64 `json:"year"`
 	Type  string  `json:"type"`
 }
 
-func editFile() []Movie { //opens file and the reads file. Returns as Movie Array
-	filebytes, err := ioutil.ReadFile("pages.json")
+func fileRead(filename string) []movie {
+	filebytes, err := ioutil.ReadFile(filename)
 	if err != nil {
 		fmt.Printf("File error: %v\n", err)
 		os.Exit(1)
 	}
 
-	var Mfile []Movie
+	var Mfile []movie
 	json.Unmarshal(filebytes, &Mfile)
-	return (Mfile)
+	return Mfile
 }
 
-func mongoconnect(Mfile []Movie) {
+func mongoinsert(mfile []movie) bool {
 	session, err := mgo.Dial("localhost") //attempts a connection and creates a session
 	if err != nil {
 		panic(err)
 	}
+
 	defer session.Close()
 	connection := session.DB("test").C("movies") //name of DB and Collection
-
-	for i := range Mfile {
-		err = connection.Insert(Mfile[i])
+	// need to seperate JSON into a map/struct somehow?
+	for _, info := range mfile {
+		err := connection.Insert(info)
 		if err != nil {
 			log.Fatal(err)
+			return false
 		}
 	}
+	return true
 }
+
 func main() {
 
-	Mfile := editFile()
-	mongoconnect(Mfile)
+	Mfile := fileRead("pages.json")
+
+	fmt.Println(mongoinsert(Mfile))
 }

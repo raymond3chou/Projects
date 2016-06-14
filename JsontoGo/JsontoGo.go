@@ -5,12 +5,15 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+
+	"gopkg.in/mgo.v2/bson"
 )
 
 type movie struct { //exported Student
 	ID    float64 `json:"id"`
 	Title string  `json:"title"`
-	URL   string  `json:"url"`
+	Year  float64 `json:"year"`
+	Typ   string  `json:"type"`
 }
 
 func main() {
@@ -24,7 +27,7 @@ func main() {
 	json.Unmarshal(filebytes, &M)
 
 	for _, m := range M {
-		Mbytes, err := json.Marshal(m)
+		Mbytes, err := bson.Marshal(m)
 		if err != nil {
 			fmt.Println(err.Error())
 			os.Exit(1)

@@ -2,21 +2,25 @@
     {
         "id": 1,
         "title": "About Us",
-        "url": "/about-us"
+        "year": 2001,
+        "type": "Comedy"
     },
     {
         "id": 2,
-        "title": "Team",
-        "url": "/team"
+        "title": "About Uyou",
+        "year": 2006,
+        "type": "Horror"
     },
     {
         "id": 3,
-        "title": "Projects",
-        "url": "/projects"
+        "title": "The Martian",
+        "year": 2016,
+        "type": "Sci-Fi"
     },
     {
         "id": 4,
-        "title": "Hire Us",
-        "url": "/hire-us"
+        "title": "King Author",
+        "year": 2006,
+        "type": "Fantasy"
     }
 ]
